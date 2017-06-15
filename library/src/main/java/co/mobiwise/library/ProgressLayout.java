@@ -133,6 +133,18 @@ public class ProgressLayout extends View implements Animatable {
     handlerProgress.removeCallbacks(mRunnableProgress);
     postInvalidate();
   }
+  
+  public void setEmptyColor(int emptyColor){
+    if (paintProgressEmpty != null) {
+      paintProgressEmpty.setColor(emptyColor);
+    }
+  }
+
+  public void setLoadedColor(int loadedColor){
+    if (paintProgressLoaded != null) {
+      paintProgressLoaded.setColor(loadedColor);
+    }
+  }
 
   public void setCurrentProgress(int currentProgress) {
     this.currentProgress = currentProgress * 10;
