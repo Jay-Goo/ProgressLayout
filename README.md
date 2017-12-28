@@ -79,7 +79,7 @@ Add it to your project build.gradle
 Add it to your app module build gradle.
 ```
 dependencies {
-     compile 'com.github.iammert:ProgressLayout:a2ac196500'
+    compile 'com.github.Jay-Goo:ProgressLayout:v0.0.2'
 }
 ```
 
