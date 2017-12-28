@@ -24,6 +24,7 @@ import android.graphics.drawable.Animatable;
 import android.os.Build;
 import android.os.Handler;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 public class ProgressLayout extends View implements Animatable {
@@ -32,9 +33,10 @@ public class ProgressLayout extends View implements Animatable {
   private static final int COLOR_LOADED_DEFAULT = 0x11FFFFFF;
   private static final int PROGRESS_SECOND_MS = 1000;
 
-  private static Paint paintProgressLoaded;
-  private static Paint paintProgressEmpty;
-
+  private Paint paintProgressLoaded;
+  private Paint paintProgressEmpty;
+  private int loadedColor;
+  private int emptyColor;
   private boolean isPlaying = false;
   private boolean isAutoProgress;
 
@@ -46,6 +48,7 @@ public class ProgressLayout extends View implements Animatable {
   private Handler handlerProgress;
 
   private ProgressLayoutListener progressLayoutListener;
+
 
   public ProgressLayout(Context context) {
     this(context, null);
@@ -102,8 +105,8 @@ public class ProgressLayout extends View implements Animatable {
     isAutoProgress = a.getBoolean(R.styleable.progressLayout_autoProgress, true);
     maxProgress = a.getInt(R.styleable.progressLayout_maxProgress, 0);
     maxProgress = maxProgress * 10;
-    int loadedColor = a.getColor(R.styleable.progressLayout_loadedColor, COLOR_LOADED_DEFAULT);
-    int emptyColor = a.getColor(R.styleable.progressLayout_emptyColor, COLOR_EMPTY_DEFAULT);
+    loadedColor = a.getColor(R.styleable.progressLayout_loadedColor, COLOR_LOADED_DEFAULT);
+    emptyColor = a.getColor(R.styleable.progressLayout_emptyColor, COLOR_EMPTY_DEFAULT);
     a.recycle();
 
     paintProgressEmpty = new Paint();
@@ -134,6 +137,18 @@ public class ProgressLayout extends View implements Animatable {
     postInvalidate();
   }
 
+  public void setEmptyColor(int emptyColor){
+    if (paintProgressEmpty != null) {
+      paintProgressEmpty.setColor(emptyColor);
+    }
+  }
+
+  public void setLoadedColor(int loadedColor){
+    if (paintProgressLoaded != null) {
+      paintProgressLoaded.setColor(loadedColor);
+    }
+  }
+
   public void setCurrentProgress(int currentProgress) {
     this.currentProgress = currentProgress * 10;
     postInvalidate();
@@ -150,6 +165,22 @@ public class ProgressLayout extends View implements Animatable {
 
   public void setProgressLayoutListener(ProgressLayoutListener progressLayoutListener) {
     this.progressLayoutListener = progressLayoutListener;
+  }
+
+  public int getLoadedColor() {
+    return loadedColor;
+  }
+
+  public int getEmptyColor() {
+    return emptyColor;
+  }
+
+  public int getMaxProgress() {
+    return maxProgress;
+  }
+
+  public int getCurrentProgress() {
+    return currentProgress;
   }
 
   private final Runnable mRunnableProgress = new Runnable() {

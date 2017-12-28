@@ -39,6 +39,7 @@ android {
     abortOnError false
   }
 
+  buildToolsVersion '25.0.2'
 }
 
 task checkstyle(type: Checkstyle) {
