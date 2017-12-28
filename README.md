@@ -1,5 +1,9 @@
 # ProgressLayout
-Custom Progress Layout for Android
+Custom Progress Layout for Android(Clone from iammert/ProgressLayout)
+
+# Change List
+ - support set loadColor and emptyColor any time !
+ - add some attrs setter and getter
 
 [![Build Status](https://api.travis-ci.org/iammert/ProgressLayout.svg)](https://travis-ci.org/iammert/ProgressLayout)
 [![Join the chat at https://gitter.im/iammert/ProgressLayout](https://img.shields.io/badge/GITTER-join%20chat-green.svg)](https://gitter.im/iammert/ProgressLayout)
@@ -79,7 +83,7 @@ Add it to your project build.gradle
 Add it to your app module build gradle.
 ```
 dependencies {
-    compile 'com.github.Jay-Goo:ProgressLayout:v0.0.2'
+    compile 'com.github.Jay-Goo:ProgressLayout:v0.0.3'
 }
 ```
 
